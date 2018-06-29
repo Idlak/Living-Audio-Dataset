@@ -12,11 +12,12 @@ Maintaining the directory structure is very important for the tools in IDLAK.
 
 ### Language resources
 
-__ln__
-* text - *source.xml*
-* `README.md`
-* word_frequencies.xml
-* *other resources in xml*
+* __ln__
+  * text 
+    * *source.xml*
+  * `README.md`
+  * word_frequencies.xml
+  * *other resources in xml*
 
 "word_frequencies.xml" is an example not a requirement.
 
@@ -24,11 +25,11 @@ See below for the text source format. Source names should be a reasonable name. 
 
 ### Speaker resources
 
-__ln_ac_spk__
-* `README.md`
-* `audio.zip`
-* `script.xml`
-* `lexicon.xml`
+* __ln_ac_spk__
+  * `README.md`
+  * `audio.zip`
+  * `script.xml`
+  * `lexicon.xml`
 
 The script can note the pronunciation of specific words by the speaker with `<pron>` tags.
 
