@@ -23,6 +23,30 @@ Maintaining the directory structure is very important for the tools in IDLAK.
 
 See below for the text source format. Source names should be a reasonable name. If a source is really only for one region or accent it is recommended that the source file name starts with region and an underscore, for example: "uk_bbc.xml". For this reason we recommend not including underscores in your file names. We also recommend not to include spaces in file names.
 
+### Text source format
+
+We recommend keeping files to a reasonable size (under 5000 lines)
+
+The text source xml format is:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<text_sources>
+  <text_source id="unique within file" name="any name" url="original url">
+    <notes>
+      Notes here are ignored and this section is optional.
+      other than id all attributes are optional in the text_source tag 
+    </notes>
+    <text>
+      Text source here, utf8-encoded.
+    </text>
+  </text_source>
+  <text_source />
+  <text_source />
+  <text_source />
+</text_sources>
+```
+
 ### Speaker resources
 
 * __ln_ac_spk__
