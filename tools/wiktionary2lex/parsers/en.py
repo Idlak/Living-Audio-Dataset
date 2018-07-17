@@ -154,7 +154,8 @@ def add_to_output(output,word,pronunciation,POS,language,accent,xsampa):
     
     # Adds an entry even if no part of speech data is available
     if len(POS)==0:
-        output.append({"word":word, "pron":pronunciation, 
+        output.append({
+                "word":word, "pron":pronunciation, 
                 "POS":None, "lang":language, 
                 "accent":accent, "x-sampa":xsampa})
 

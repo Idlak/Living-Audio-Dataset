@@ -17,6 +17,8 @@
 # limitations under the License.
 
 # NOTE: This parser only extracts Irish words
+# NOTE: The Irish Wiktionary contains no accent data, so this parser returns
+# None for all accents
 
 from lxml import etree as ET
 import sys
@@ -108,7 +110,8 @@ def add_to_output(output,word,pronunciation,POS,language,accent,xsampa):
     
     # Adds an entry even if no part of speech data is available
     if len(POS)==0:
-        output.append({"word":word, "pron":pronunciation, 
+        output.append({
+                "word":word, "pron":pronunciation, 
                 "POS":None, "lang":language, 
                 "accent":accent, "x-sampa":xsampa})
 
