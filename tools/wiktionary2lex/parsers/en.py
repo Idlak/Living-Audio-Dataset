@@ -22,10 +22,10 @@ import time
 import re
 import pickle
 
-def data_stripping(xml):
+def extract_entries(wiktionary_xml):
     if __debug__:
         print "Starting parse"
-    tree = ET.parse(xml)
+    tree = ET.parse(wiktionary_xml)
     if __debug__:
         print "Finished parse"
     root = tree.getroot()
@@ -37,7 +37,8 @@ def data_stripping(xml):
     accent_set_pattern = re.compile("({{a.*?}})")
     accent_pattern = re.compile("\|(.*?)(?=[|}])")
     POS_categories = {"Noun","Pronoun","Verb","Adjective",
-                      "Adverb","Conjunction","Preposition","Interjection"}
+                      "Adverb","Conjunction","Preposition","Interjection",
+                      "Number"}
 
     output_data = []
     entry_POS = []
@@ -153,7 +154,8 @@ def add_to_output(output,word,pronunciation,POS,language,accent,xsampa):
     
     # Adds an entry even if no part of speech data is available
     if len(POS)==0:
-        output.append({"word":word, "pron":pronunciation, 
+        output.append({
+                "word":word, "pron":pronunciation, 
                 "POS":None, "lang":language, 
                 "accent":accent, "x-sampa":xsampa})
 
@@ -170,9 +172,9 @@ if __name__ == "__main__":
     reload(sys)
     sys.setdefaultencoding('utf-8')
 
-    xml = sys.argv[1]
+    wiktionary_xml = sys.argv[1]
 
-    output = data_stripping(xml)
+    output = extract_entries(wiktionary_xml)
     
     if __debug__:
         timestr = time.strftime("%Y%m%d-%H%M%S")
