@@ -18,7 +18,7 @@
 
 # NOTE: This parser only extracts Irish words
 # NOTE: The Irish Wiktionary contains no accent data, so this parser returns
-# None for all accents
+#       None for all accents
 
 from lxml import etree as ET
 import sys
@@ -26,10 +26,10 @@ import time
 import re
 import pickle
 
-def data_stripping(xml):
+def extract_entries(wiktionary_xml):
     if __debug__:
         print "Starting parse"
-    tree = ET.parse(xml)
+    tree = ET.parse(wiktionary_xml)
     if __debug__:
         print "Finished parse"
     root = tree.getroot()
@@ -128,9 +128,9 @@ if __name__ == "__main__":
     reload(sys)
     sys.setdefaultencoding('utf-8')
 
-    xml = sys.argv[1]
+    wiktionary_xml = sys.argv[1]
 
-    output = data_stripping(xml)
+    output = extract_entries(wiktionary_xml)
     
     if __debug__:
         timestr = time.strftime("%Y%m%d-%H%M%S")
