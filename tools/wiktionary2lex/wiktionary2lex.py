@@ -11,7 +11,7 @@ def ipa2xsampa(ipa_text,table):
 
 def xml2dict(language_code,xml):
     parser_module = imp.load_source("parser","parsers/" + language_code + ".py")
-    output = parser_module.data_stripping(xml)
+    output = parser_module.extract_entries(xml)
     return output
 
 def add_xsampa_to_data(parsed_data):
@@ -32,7 +32,7 @@ def print_output(output):
 
 if __name__ == "__main__":
     language_code = sys.argv[1]
-    xml = sys.argv[2]
+    wiktionary_xml = sys.argv[2]
     output = xml2dict(language_code,xml)
     add_xsampa_to_data(output)
     print_output(output)
