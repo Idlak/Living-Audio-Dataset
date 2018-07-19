@@ -60,7 +60,7 @@ def filter_list(data,*filters):
     filtered_data = [[d,True] for d in data]
 
     for first,second in itertools.combinations(filtered_data,2):
-        if compare(first[0],second[0],*filters):
+        if first[1] and compare(first[0],second[0],*filters):
             second[1]=False
 
     return [list_item[0] for list_item in filtered_data if list_item[1]]
