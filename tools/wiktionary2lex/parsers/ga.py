@@ -71,7 +71,8 @@ def extract_entries(wiktionary_xml):
                         # Store the parts of speech that are mentioned
                         entry_POS.clear()
                         for key,value in POS_categories.items():
-                            if "{{-" + key + "-|ga}}" in subentry.text:
+                            if "{{-" + key + "-|ga}}" in \
+                                    subentry.text.encode("utf-8"):
                                 entry_POS.add(value)
 
                         # State variable used to ensure that an entry 
