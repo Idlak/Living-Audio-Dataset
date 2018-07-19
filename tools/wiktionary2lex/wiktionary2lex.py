@@ -59,19 +59,13 @@ def compare(dictionary1,dictionary2,*filters):
     return identical
 
 def filter_list(data,*filters):
-    filtered_data = []
+    filtered_data = [[d,True] for d in data]
 
-    for list_item in data:
-        list_item["unique"]=True
+    for first,second in itertools.combinations(filtered_data,2):
+        if compare(first[0],second[0],*filters):
+            second[1]=False
 
-    for first,second in itertools.combinations(data,2):
-        if compare(first,second,*filters):
-            second["unique"]=False
-
-    for list_item in data:
-        if list_item["unique"] is True:
-            filtered_data.append(list_item)
-    return filtered_data
+    return [list_item[0] for list_item in filtered_data if list_item[1]]
 
 def parse_arguments():
     arg_parser = argparse.ArgumentParser(
