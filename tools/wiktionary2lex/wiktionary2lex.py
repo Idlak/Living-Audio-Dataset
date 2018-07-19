@@ -6,6 +6,7 @@ import imp
 import sys
 from lxml import etree as ET
 import itertools
+import argparse
 
 def ipa2xsampa(ipa_text,table):
     xsampa_text = cxs.ucipa2cxs(ipa_text,table)
@@ -72,10 +73,32 @@ def filter_list(data,*filters):
             filtered_data.append(list_item)
     return filtered_data
 
+def parse_arguments():
+    arg_parser = argparse.ArgumentParser(
+            description="Select parser, wiktionary dump, and output file")
+    arg_parser.add_argument(
+            "language code",
+            default="en",
+            type=str,
+            help="Language code used to determine which parser to use")
+    arg_parser.add_argument(
+            "wiktionary xml",
+            type=str,
+            help="xml file containing the wiktionary dump to parse")
+    arg_parser.add_argument(
+            "output",
+            default="lex.xml",
+            type=str,
+            help="Output file for storing the final lexicon")
+    args = vars(arg_parser.parse_args())
+    return args
+
 if __name__ == "__main__":
-    language_code = sys.argv[1]
-    wiktionary_xml = sys.argv[2]
-    output_lexicon = sys.argv[3]
+    args = parse_arguments()
+    language_code = args["language code"]
+    wiktionary_xml = args["wiktionary xml"]
+    output_lexicon = args["output"]
+
     output = xml2dict(language_code,wiktionary_xml)
     add_xsampa_to_data(output)
     print_output(output)
