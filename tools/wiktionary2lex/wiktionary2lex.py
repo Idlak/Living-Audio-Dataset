@@ -51,12 +51,10 @@ def output2lex(output,filename):
             xml_declaration=True,encoding="utf-8")
 
 def compare(dictionary1,dictionary2,*filters):
-    identical = 1
     for key in filters:
         if dictionary1[key] != dictionary2[key]:
-            identical = 0
-            break
-    return identical
+            return False
+    return True
 
 def filter_list(data,*filters):
     filtered_data = [[d,True] for d in data]
