@@ -118,7 +118,7 @@ def extract_entries(wiktionary_xml):
                                         print "\t\t\tFound accent " + \
                                                 accent_match.group(1)
 
-                                    output_data.extend(parser_lib.make_entry(
+                                    output_data.extend(parser_lib.make_entries(
                                             word,
                                             pronunciation_match.group(2),
                                             entry_POS,
@@ -127,7 +127,7 @@ def extract_entries(wiktionary_xml):
                                             None))
 
                             if no_accent_sets:
-                                output_data.extend(parser_lib.make_entry(
+                                output_data.extend(parser_lib.make_entries(
                                         word,
                                         pronunciation_match.group(2),
                                         entry_POS,
@@ -135,7 +135,7 @@ def extract_entries(wiktionary_xml):
                                         None,
                                         None))
                     else:
-                        output_data.extend(parser_lib.make_entry(
+                        output_data.extend(parser_lib.make_entries(
                                 word,
                                 None,
                                 entry_POS,
