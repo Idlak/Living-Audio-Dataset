@@ -38,4 +38,4 @@ if [ ! -f $DFILE ]
         bzip2 -dk $DZIPFILE
 fi
 
-python $script $language_code $DFILE $output
+./$script $language_code $DFILE $output
