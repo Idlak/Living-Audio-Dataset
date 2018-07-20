@@ -16,11 +16,13 @@
 # See the Apache 2 License for the specific language governing permissions and
 # limitations under the License.
 
-from lxml import etree as ET
 import sys
 import time
 import re
 import pickle
+from lxml import etree as ET
+
+import parser_lib
 
 def extract_entries(wiktionary_xml):
     if __debug__:
@@ -116,57 +118,31 @@ def extract_entries(wiktionary_xml):
                                         print "\t\t\tFound accent " + \
                                                 accent_match.group(1)
 
-                                    add_to_output(
-                                            output_data,
+                                    output_data.extend(parser_lib.make_entries(
                                             word,
                                             pronunciation_match.group(2),
                                             entry_POS,
                                             language_match.group(1),
                                             accent_match.group(1),
-                                            None)
+                                            None))
 
                             if no_accent_sets:
-                                add_to_output(
-                                        output_data,
+                                output_data.extend(parser_lib.make_entries(
                                         word,
                                         pronunciation_match.group(2),
                                         entry_POS,
                                         language_match.group(1),
                                         None,
-                                        None)
+                                        None))
                     else:
-                        add_to_output(
-                                output_data,
+                        output_data.extend(parser_lib.make_entries(
                                 word,
                                 None,
                                 entry_POS,
                                 language_match.group(1),
                                 None,
-                                None)
+                                None))
     return output_data
-
-def add_to_output(output,word,pronunciation,POS,language,accent,xsampa):
-    for entry in POS:
-        output.append({
-                "word":word, "pron":pronunciation, 
-                "POS":entry, "lang":language, 
-                "accent":accent, "x-sampa":xsampa})
-    
-    # Adds an entry even if no part of speech data is available
-    if len(POS)==0:
-        output.append({
-                "word":word, "pron":pronunciation, 
-                "POS":None, "lang":language, 
-                "accent":accent, "x-sampa":xsampa})
-
-def print_output(output):
-    for list_item in output:
-        for key in list_item:
-            if list_item[key] is None:
-                print key + ":None\t",
-            else:
-                print key + ":" + list_item[key] + "\t",
-        print "\n"
 
 if __name__ == "__main__":
     reload(sys)
@@ -181,4 +157,4 @@ if __name__ == "__main__":
         output_filename = "output/output_" + timestr + ".txt"
         output_file = open(output_filename,'wb')
         pickle.dump(output,output_file)
-        print_output(output)
+        parser_lib.print_output(output)

@@ -12,3 +12,5 @@ These should be stored in the third\_party/ directory.
 There is a different parser for each language. Note that this is the language
 the Wiktionary article is written in, not the language of the words themselves.
 Any new parsers should be saved in the form parsers/[two-letter language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).py
+They must also be added to the import and the dictionary in get\_parser() in
+parser\_lib.py
