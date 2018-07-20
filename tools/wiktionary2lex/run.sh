@@ -1,7 +1,6 @@
 #!/bin/bash
 
 output="lex.xml"
-script="wiktionary2lex.py"
 
 if [ $# -eq 0 ]
     then
@@ -38,4 +37,4 @@ if [ ! -f $DFILE ]
         bzip2 -dk $DZIPFILE
 fi
 
-./$script $language_code $DFILE $output
+./wiktionary2lex.py $language_code $DFILE $output
