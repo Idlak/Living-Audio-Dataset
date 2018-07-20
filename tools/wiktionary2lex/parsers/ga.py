@@ -84,7 +84,7 @@ def extract_entries(wiktionary_xml):
                         for pronunciation_match in re.finditer(
                                 pronunciation_pattern,subentry.text):
                             no_pronunciation_data = 0
-                            output_data.extend(parser_lib.make_entry(
+                            output_data.extend(parser_lib.make_entries(
                                     word,
                                     pronunciation_match.group(1),
                                     entry_POS,
@@ -93,7 +93,7 @@ def extract_entries(wiktionary_xml):
                                     None))
 
                         if no_pronunciation_data:
-                            output_data.extend(parser_lib.make_entry(
+                            output_data.extend(parser_lib.make_entries(
                                     word,
                                     None,
                                     entry_POS,

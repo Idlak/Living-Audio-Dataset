@@ -33,7 +33,7 @@ def print_output(output):
                 print key + ":" + list_item[key] + "\t",
         print "\n"
 
-def make_entry(word,pronunciation,POS,language,accent,xsampa):
+def make_entries(word,pronunciation,POS,language,accent,xsampa):
     output = []
     for entry in POS:
         output.append({
