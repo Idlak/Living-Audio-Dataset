@@ -84,39 +84,23 @@ def extract_entries(wiktionary_xml):
                         for pronunciation_match in re.finditer(
                                 pronunciation_pattern,subentry.text):
                             no_pronunciation_data = 0
-                            add_to_output(
-                                    output_data,
+                            output_data.extend(parser_lib.make_entry(
                                     word,
                                     pronunciation_match.group(1),
                                     entry_POS,
                                     language,
                                     None,
-                                    None)
+                                    None))
 
                         if no_pronunciation_data:
-                            add_to_output(
-                                    output_data,
+                            output_data.extend(parser_lib.make_entry(
                                     word,
                                     None,
                                     entry_POS,
                                     language,
                                     None,
-                                    None)
+                                    None))
     return output_data
-
-def add_to_output(output,word,pronunciation,POS,language,accent,xsampa):
-    for entry in POS:
-        output.append({
-                "word":word, "pron":pronunciation, 
-                "POS":entry, "lang":language, 
-                "accent":accent, "x-sampa":xsampa})
-    
-    # Adds an entry even if no part of speech data is available
-    if len(POS)==0:
-        output.append({
-                "word":word, "pron":pronunciation, 
-                "POS":None, "lang":language, 
-                "accent":accent, "x-sampa":xsampa})
 
 if __name__ == "__main__":
     reload(sys)
