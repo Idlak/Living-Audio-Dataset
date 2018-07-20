@@ -33,10 +33,7 @@ if [ ! -f $DFILE ]
         if [ ! -f $DZIPFILE ]
             then
                 wget "https://dumps.wikimedia.org/gawiktionary/latest/"$ZIPFILE
-                if [ ! -d "$DIRECTORY" ]
-                    then
-                        mkdir $DIRECTORY
-                fi
+                mkdir -p $DIRECTORY
                 mv $ZIPFILE $DZIPFILE
         fi
         bzip2 -dk $DZIPFILE
