@@ -10,7 +10,8 @@ if [ $# -eq 0 ]
 fi
 
 FILE=$language_code"wiktionary-latest-pages-articles-multistream.xml"
-DFILE="wiktionaries/"$FILE
+DIRECTORY="wiktionaries/"
+DFILE=$DIRECTORY$FILE
 
 if [ ! -f third_party/cxs.py ]
     then
@@ -27,11 +28,15 @@ fi
 if [ ! -f $DFILE ]
     then
         ZIPFILE=$FILE".bz2"
-        DZIPFILE="wiktionaries/"$ZIPFILE
+        DZIPFILE=$DIRECTORY$ZIPFILE
 
         if [ ! -f $DZIPFILE ]
             then
                 wget "https://dumps.wikimedia.org/gawiktionary/latest/"$ZIPFILE
+                if [ ! -d "$DIRECTORY" ]
+                    then
+                        mkdir $DIRECTORY
+                fi
                 mv $ZIPFILE $DZIPFILE
         fi
         bzip2 -dk $DZIPFILE
