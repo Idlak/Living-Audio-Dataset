@@ -14,6 +14,7 @@
 # MERCHANTABLITY OR NON-INFRINGEMENT.
 # See the Apache 2 License for the specific language governing permissions and
 # limitations under the License.
+
 import ga
 import en
 
@@ -32,3 +33,19 @@ def print_output(output):
                 print key + ":" + list_item[key] + "\t",
         print "\n"
 
+def make_entry(word,pronunciation,POS,language,accent,xsampa):
+    output = []
+    for entry in POS:
+        output.append({
+                "word":word, "pron":pronunciation, 
+                "POS":entry, "lang":language, 
+                "accent":accent, "x-sampa":xsampa})
+    
+    # Adds an entry even if no part of speech data is available
+    if len(POS)==0:
+        output.append({
+                "word":word, "pron":pronunciation, 
+                "POS":None, "lang":language, 
+                "accent":accent, "x-sampa":xsampa})
+    
+    return output

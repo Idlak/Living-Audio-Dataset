@@ -118,48 +118,31 @@ def extract_entries(wiktionary_xml):
                                         print "\t\t\tFound accent " + \
                                                 accent_match.group(1)
 
-                                    add_to_output(
-                                            output_data,
+                                    output_data.extend(parser_lib.make_entry(
                                             word,
                                             pronunciation_match.group(2),
                                             entry_POS,
                                             language_match.group(1),
                                             accent_match.group(1),
-                                            None)
+                                            None))
 
                             if no_accent_sets:
-                                add_to_output(
-                                        output_data,
+                                output_data.extend(parser_lib.make_entry(
                                         word,
                                         pronunciation_match.group(2),
                                         entry_POS,
                                         language_match.group(1),
                                         None,
-                                        None)
+                                        None))
                     else:
-                        add_to_output(
-                                output_data,
+                        output_data.extend(parser_lib.make_entry(
                                 word,
                                 None,
                                 entry_POS,
                                 language_match.group(1),
                                 None,
-                                None)
+                                None))
     return output_data
-
-def add_to_output(output,word,pronunciation,POS,language,accent,xsampa):
-    for entry in POS:
-        output.append({
-                "word":word, "pron":pronunciation, 
-                "POS":entry, "lang":language, 
-                "accent":accent, "x-sampa":xsampa})
-    
-    # Adds an entry even if no part of speech data is available
-    if len(POS)==0:
-        output.append({
-                "word":word, "pron":pronunciation, 
-                "POS":None, "lang":language, 
-                "accent":accent, "x-sampa":xsampa})
 
 if __name__ == "__main__":
     reload(sys)
