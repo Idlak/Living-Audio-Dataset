@@ -51,9 +51,10 @@ The text source xml format is:
 
 * __ln_ac_spk__
   * `README.md`
-  * `audio.zip`
   * `script.xml`
   * `lexicon.xml`
+
+Audio is uploaded to archive.org in tar.gz format
 
 The script can note the pronunciation of specific words by the speaker with `<pron>` tags.
 
