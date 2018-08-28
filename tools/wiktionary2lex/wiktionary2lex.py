@@ -16,10 +16,6 @@
 # See the Apache 2 License for the specific language governing permissions and
 # limitations under the License.
 
-<<<<<<< HEAD
-import imp
-=======
->>>>>>> upstream/master
 import sys
 import itertools
 import argparse
