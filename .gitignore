@@ -1,0 +1,7 @@
+# Audio files in sub directories
+*/*/*/*_orig
+*/*/*/*.wav
+
+# Speaker audio
+nl/nl/abw/nl.nl.abw.48000.tar.gz
+ru/ru/abr/ru.ru.abr.48000.tar.gz
