@@ -51,7 +51,7 @@ The text source xml format is:
 
 * __ln_ac_spk__
   * `README.md`
-  * `script.xml`
+  * `text.xml`
   * `lexicon.xml`
 
 Audio is uploaded to archive.org in tar.gz format
