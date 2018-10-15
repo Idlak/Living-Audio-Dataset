@@ -10,12 +10,8 @@ if [ $# -eq 0 ]
 fi
 
 FILE=$language_code"wiktionary-latest-pages-articles-multistream.xml"
-<<<<<<< HEAD
-DFILE="wiktionaries/"$FILE
-=======
 DIRECTORY="wiktionaries/"
 DFILE=$DIRECTORY$FILE
->>>>>>> upstream/master
 
 if [ ! -f third_party/cxs.py ]
     then
@@ -32,19 +28,12 @@ fi
 if [ ! -f $DFILE ]
     then
         ZIPFILE=$FILE".bz2"
-<<<<<<< HEAD
-        DZIPFILE="wiktionaries/"$ZIPFILE
-=======
         DZIPFILE=$DIRECTORY$ZIPFILE
->>>>>>> upstream/master
 
         if [ ! -f $DZIPFILE ]
             then
                 wget "https://dumps.wikimedia.org/gawiktionary/latest/"$ZIPFILE
-<<<<<<< HEAD
-=======
                 mkdir -p $DIRECTORY
->>>>>>> upstream/master
                 mv $ZIPFILE $DZIPFILE
         fi
         bzip2 -dk $DZIPFILE

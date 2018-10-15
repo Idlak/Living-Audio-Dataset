@@ -51,18 +51,11 @@ The text source xml format is:
 
 * __ln_ac_spk__
   * `README.md`
-<<<<<<< HEAD
-  * `audio.zip`
-  * `script.xml`
-  * `lexicon.xml`
-
-=======
-  * `script.xml`
+  * `text.xml`
   * `lexicon.xml`
 
 Audio is uploaded to archive.org in tar.gz format
 
->>>>>>> upstream/master
 The script can note the pronunciation of specific words by the speaker with `<pron>` tags.
 
 The lexicon is optional and will be appended to the language lexicon in the IDLAK main repo.
