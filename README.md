@@ -64,4 +64,7 @@ The lexicon is optional and will be appended to the language lexicon in the IDLA
 
 | Language | Accent | Code | Notes |
 |:--------:|:------:|:----:| ----- |
-| en | rp | aaa | __example to be deleted__ |
+| ga | ie | cll | |
+| nl | nl | abw | |
+| ru | ru | abr | |
+
