@@ -19,39 +19,45 @@
 import argparse
 from lxml import etree as ET
 
-def converter(ipa_text,phone_map):
+def converter(ipa_text,phone_map,sorted_ipa):
     pron_text = []
     while len(ipa_text) > 0:
         if ipa_text[0] == " ":
             ipa_text = ipa_text[1:]
-        elif ipa_text[:2] in phone_map:
-            pron_text.append(phone_map.get(ipa_text[:2]))
-            ipa_text = ipa_text[2:]
-        elif ipa_text[0] in phone_map:
-            pron_text.append(phone_map.get(ipa_text[0]))
-            ipa_text = ipa_text[1:]
         else:
-            print("WARNING: Could not match pair",ipa_text[:2])
-            ipa_text = ipa_text[1:]
-
+            match = False
+            for ipa in sorted_ipa:
+                if ipa_text.startswith(ipa):
+                    pron_text.append(phone_map[ipa])
+                    ipa_text = ipa_text[len(ipa):]
+                    match = True
+                    break
+            if match == False:
+                print("WARNING: Could not match symbol",ipa_text[:1])
+                ipa_text = ipa_text[1:]
     return ' '.join(pron_text)
 
-def convert_lexicon(lex_xml,phone_map):
+def convert_lexicon(lex_xml,phone_map,sorted_ipa):
     tree = ET.parse(lex_xml)
     root = tree.getroot()
     for entry in root:
-        entry.attrib["pron"] = converter(entry.get("ipa"),phone_map)
+        entry.attrib["pron"] = converter(entry.get("ipa"),phone_map,sorted_ipa)
         entry.attrib["provenance"] = "IPA conversion"
     return tree
 
-def import_phone_map(phone_xml):
-    tree = ET.parse(phone_xml)
+def import_phone_map(mapping_xml):
+    tree = ET.parse(mapping_xml)
     root = tree.getroot()
     phone_map = {}
     for entry in root:
-        if len(entry)>0:
-            phone_map[entry[0].get("ipa")] = entry.get("name")
+        phone_map[entry.get("ipa")] = entry.get("pron")
     return phone_map
+
+def ipa_by_length(phone_map):
+    sorted_ipa = []
+    for ipa in sorted(phone_map, key=len, reverse=True):
+        sorted_ipa.append(ipa)
+    return sorted_ipa
 
 def output_to_file(xml_tree,output_file):
     lexicon_output = open(output_file,"wb")
@@ -63,9 +69,9 @@ def parse_arguments():
     arg_parser = argparse.ArgumentParser(
             description="Select phoneset, lexicon, and output file")
     arg_parser.add_argument(
-            "phoneset",
+            "mapping",
             type=str,
-            help="xml file that contains the mapping from IPA -> phoneset")
+            help="xml file that contains the mapping from IPA -> phones")
     arg_parser.add_argument(
             "lexicon",
             type=str,
@@ -80,10 +86,11 @@ def parse_arguments():
 
 if __name__ == "__main__":
     args = parse_arguments()
-    phone_xml = args["phoneset"]
+    mapping_xml = args["mapping"]
     lex_xml = args["lexicon"]
     output_file = args["output"]
 
-    phone_map = import_phone_map(phone_xml)
-    tree = convert_lexicon(lex_xml,phone_map)
+    phone_map = import_phone_map(mapping_xml)
+    sorted_ipa = ipa_by_length(phone_map)
+    tree = convert_lexicon(lex_xml,phone_map,sorted_ipa)
     output_to_file(tree,output_file)
