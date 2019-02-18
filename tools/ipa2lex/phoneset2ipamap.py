@@ -25,6 +25,8 @@ def import_phone_map(phoneset_xml):
     phone_map = {}
     for entry in root:
         if len(entry)>0:
+            if entry[0].get("archiphone") == "true":
+                continue
             phone_map[entry[0].get("ipa")] = entry.get("name")
     return phone_map
 
