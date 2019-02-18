@@ -17,6 +17,7 @@
 # limitations under the License.
 
 import argparse
+import unicodedata
 from lxml import etree as ET
 
 def converter(ipa_text,phone_map,sorted_ipa):
@@ -41,6 +42,7 @@ def convert_lexicon(lex_xml,phone_map,sorted_ipa):
     tree = ET.parse(lex_xml)
     root = tree.getroot()
     for entry in root:
+        entry.attrib["ipa"] = unicodedata.normalize("NFC", entry.get("ipa"))
         entry.attrib["pron"] = converter(entry.get("ipa"),phone_map,sorted_ipa)
         entry.attrib["provenance"] = "IPA conversion"
     return tree
@@ -50,7 +52,7 @@ def import_phone_map(mapping_xml):
     root = tree.getroot()
     phone_map = {}
     for entry in root:
-        phone_map[entry.get("ipa")] = entry.get("pron")
+        phone_map[unicodedata.normalize("NFC",entry.get("ipa"))] = entry.get("pron")
     return phone_map
 
 def ipa_by_length(phone_map):
