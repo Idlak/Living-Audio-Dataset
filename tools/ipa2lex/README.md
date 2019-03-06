@@ -1,6 +1,6 @@
 # IPA to Phoneset converter
 Scripts that add an Idlak phoneset pronunciation to a lexicon by converting from
-IPA.
+IPA using greedy matching.
 
 ## ipa2lex.py
 Takes a lexicon and an IPA-to-phone mapping, both in xml form.
