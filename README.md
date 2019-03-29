@@ -1,5 +1,5 @@
-# Idlak Resources
-Audio and text resources that can be used within IDLAK
+# The Living Audio Dataset
+A "Crowd-Built" continuously growing speech dataset with transcripts. The dataset contains multiple languages and is intended for anyone to be able to add to it.
 
 Languages are required to be 2 letters, normally their 2 letter ISO code, see: [wiki article on ISO_639-1 codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
 
