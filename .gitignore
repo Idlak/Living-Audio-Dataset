@@ -1,6 +1,10 @@
 # Audio files in sub directories
 */*/*/*_orig
 */*/*/*.wav
+*__pycache__
+
+# Recommended way of running scripts using virtual env
+tools/*/venv
 
 # Speaker audio
 nl/nl/abw/nl.nl.abw.48000.tar.gz

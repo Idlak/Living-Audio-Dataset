@@ -1,0 +1,5 @@
+Tools have been written in Python3
+
+Each tool has a `requirements.txt` which contains the requirements for the tool
+
+It is suggested to run in virtualenv (git has been setup to ignore venv directories)

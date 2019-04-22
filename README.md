@@ -1,5 +1,5 @@
-# Idlak Resources
-Audio and text resources that can be used within IDLAK
+# The Living Audio Dataset
+A "Crowd-Built" continuously growing speech dataset with transcripts. The dataset contains multiple languages and is intended for anyone to be able to add to it.
 
 Languages are required to be 2 letters, normally their 2 letter ISO code, see: [wiki article on ISO_639-1 codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
 
@@ -62,9 +62,9 @@ The lexicon is optional and will be appended to the language lexicon in the IDLA
 
 ## Current speakers
 
-| Language | Accent | Code | Notes |
-|:--------:|:------:|:----:| ----- |
-| ga | ie | cll | |
-| nl | nl | abw | |
-| ru | ru | abr | |
-
+| Speaker | Language | Accent | Gender | Total duration(mm:ss) | Sample rate (Hz) |
+|:-------:|:--------:|:------:|:------:|:---------------------:|:----------------:|
+| ABW | Dutch (nl)   | Netherlands (nl) | Man   | 57:49 | 48\,000 |
+| RBU | English (en) | RP (rp)          | Man   | 50:50 | 48\,000 |
+| CLL | Irish (ga)   | Non-native (ie)  | Man   | 61:56 | 48\,000 |
+| ABR | Russuan (ru) | Russian (ru)     | Woman | 34:58 | 48\,000 |
