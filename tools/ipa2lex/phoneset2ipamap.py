@@ -30,13 +30,26 @@ def import_phone_map(phoneset_xml):
             phone_map[entry[0].get("ipa")] = entry.get("name")
     return phone_map
 
-def create_output(phone_map,output_file):
+def import_nuclei(sylmax_xml):
+    tree = ET.parse(sylmax_xml)
+    root = tree.getroot()
+    for component in root:
+        if component.tag == "nuclei":
+            nuclei = [nucleus.get("pat") for nucleus in component]
+    return nuclei
+
+def create_output(phone_map,output_file,nuclei=[],add_nuclei=False):
     root = ET.Element("ipa_mapping")
     tree = ET.ElementTree(root)
     for ipa, phone in phone_map.items():
         mapping = ET.SubElement(root, "map")
         mapping.attrib["pron"] = phone
         mapping.attrib["ipa"] = ipa
+        if add_nuclei:
+            if phone in nuclei:
+                mapping.attrib["nucleus"] = "true"
+            else:
+                mapping.attrib["nucleus"] = "false"
     mapping_output = open(output_file,"wb")
     tree.write(
             mapping_output,pretty_print=True,   
@@ -50,6 +63,11 @@ def parse_arguments():
             type=str,
             help="xml file that contains the phoneset in Idlak format")
     arg_parser.add_argument(
+            "sylmax",
+            nargs="?",
+            help="Optional xml file that contains the information about valid \
+                    syllables")
+    arg_parser.add_argument(
             "output",
             default="mapping.xml",
             type=str,
@@ -60,7 +78,13 @@ def parse_arguments():
 if __name__ == "__main__":
     args = parse_arguments()
     phoneset_xml = args["phoneset"]
+    sylmax_xml = args["sylmax"]
     output_file = args["output"]
-
+    
+    nuclei = []
+    add_nuclei = False
+    if sylmax_xml is not None:
+        add_nuclei = True
+        nuclei = import_nuclei(sylmax_xml)
     phone_map = import_phone_map(phoneset_xml)
-    create_output(phone_map,output_file)
+    create_output(phone_map,output_file,nuclei,add_nuclei)

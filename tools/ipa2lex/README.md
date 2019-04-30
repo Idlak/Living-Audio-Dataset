@@ -18,39 +18,41 @@ Example lexicon:
 ```
 
 Example mapping:
+Note that the nucleus attribute is optional and only necessary for dealing with
+stress markers
 ```
 <?xml version='1.0' encoding='UTF-8'?>
 <ipa_mapping>
-  <map pron="ae" ipa="æ"/>
-  <map pron="ay" ipa="aɪ"/>
-  <map pron="b" ipa="b"/>
-  <map pron="d" ipa="d"/>
-  <map pron="ey" ipa="ɛɪ"/>
-  <map pron="ih" ipa="ɪ"/>
-  <map pron="iy" ipa="i"/>
-  <map pron="k" ipa="k"/>
-  <map pron="l" ipa="l"/>
-  <map pron="m" ipa="m"/>
-  <map pron="n" ipa="n"/>
-  <map pron="ng" ipa="ŋ"/>
-  <map pron="p" ipa="p"/>
-  <map pron="r" ipa="r"/>
-  <map pron="t" ipa="t"/>
+  <map pron="ae" ipa="æ" nucleus="true"/>
+  <map pron="ay" ipa="aɪ" nucleus="true"/>
+  <map pron="b" ipa="b" nucleus="false"/>
+  <map pron="d" ipa="d" nucleus="false"/>
+  <map pron="ey" ipa="ɛɪ" nucleus="true"/>
+  <map pron="ih" ipa="ɪ" nucleus="true"/>
+  <map pron="iy" ipa="i" nucleus="true"/>
+  <map pron="k" ipa="k" nucleus="false"/>
+  <map pron="l" ipa="l" nucleus="false"/>
+  <map pron="m" ipa="m" nucleus="false"/>
+  <map pron="n" ipa="n" nucleus="false"/>
+  <map pron="ng" ipa="ŋ" nucleus="false"/>
+  <map pron="p" ipa="p" nucleus="false"/>
+  <map pron="r" ipa="r" nucleus="false"/>
+  <map pron="t" ipa="t" nucleus="false"/>
 </ipa_mapping>
 ```
 
-Outputs another lexicon with the pronunciation added, as well an an attribute
+Outputs another lexicon with the pronunciation added, as well as an attribute
 noting the origin of the pronunciation.
 
 Example output:
 ```
 <?xml version='1.0' encoding='UTF-8'?>
 <lexicon name="cmudict.0.7a">
-<lex ipa="ɛɪ" entry="full" default="true" pron="ey" provenance="IPA conversion">a</lex>
-<lex ipa="ˈtrɪpl ɛɪ" entry="full" default="true" pron="t r ih p l ey" provenance="IPA conversion">aaa</lex>
-<lex ipa="ˈbæblɪŋ" entry="full" default="true" pron="b ae b l ih ng" provenance="IPA conversion">babbling</lex>
-<lex ipa="kriːm" entry="full" default="true" pron="k r iy m" provenance="IPA conversion">cream</lex>
-<lex ipa="daɪˈnæmɪk" entry="full" default="true" pron="d ay n ae m ih k" provenance="IPA conversion">dynamic</lex>
+<lex ipa="ɛɪ" entry="full" default="true" pron="ey1" provenance="IPA conversion">a</lex>
+<lex ipa="ˈtrɪpl ɛɪ" entry="full" default="true" pron="t r ih1 p l ey0" provenance="IPA conversion">aaa</lex>
+<lex ipa="ˈbæblɪŋ" entry="full" default="true" pron="b ae1 b l ih0 ng" provenance="IPA conversion">babbling</lex>
+<lex ipa="kriːm" entry="full" default="true" pron="k r iy1 m" provenance="IPA conversion">cream</lex>
+<lex ipa="daɪˈnæmɪk" entry="full" default="true" pron="d ay0 n ae1 m ih0 k" provenance="IPA conversion">dynamic</lex>
 </lexicon>
 ```
 
@@ -60,7 +62,11 @@ Any unrecognised characters will be skipped over with a warning.
 Takes a phoneset xml as input and outputs a mapping xml that can be used by
 ipa2lex.py.
 
-Example input:
+A syllable xml file can also be used as an additional input in order to record
+in the mapping file which phonemes can be used as nuclei. This is relevant for
+converting stress markers from IPA.
+
+Example phoneset input:
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <phonesetup>
@@ -112,24 +118,38 @@ Example input:
 </phonesetup>
 ```
 
+Example syllable input:
+```
+<?xml version="1.0" ?>
+<syl>
+	<nuclei stress="false">
+		<n pat="ae"/>
+		<n pat="ay"/>
+		<n pat="ey"/>
+		<n pat="ih"/>
+		<n pat="iy"/>
+	</nuclei>
+</syl>
+```
+
 Example output:
 ```
 <?xml version='1.0' encoding='UTF-8'?>
 <ipa_mapping>
-  <map pron="ae" ipa="æ"/>
-  <map pron="ay" ipa="aɪ"/>
-  <map pron="b" ipa="b"/>
-  <map pron="d" ipa="d"/>
-  <map pron="ey" ipa="ɛɪ"/>
-  <map pron="ih" ipa="ɪ"/>
-  <map pron="iy" ipa="i"/>
-  <map pron="k" ipa="k"/>
-  <map pron="l" ipa="l"/>
-  <map pron="m" ipa="m"/>
-  <map pron="n" ipa="n"/>
-  <map pron="ng" ipa="ŋ"/>
-  <map pron="p" ipa="p"/>
-  <map pron="r" ipa="r"/>
-  <map pron="t" ipa="t"/>
+  <map pron="ae" ipa="æ" nucleus="true"/>
+  <map pron="ay" ipa="aɪ" nucleus="true"/>
+  <map pron="b" ipa="b" nucleus="false"/>
+  <map pron="d" ipa="d" nucleus="false"/>
+  <map pron="ey" ipa="ɛɪ" nucleus="true"/>
+  <map pron="ih" ipa="ɪ" nucleus="true"/>
+  <map pron="iy" ipa="i" nucleus="true"/>
+  <map pron="k" ipa="k" nucleus="false"/>
+  <map pron="l" ipa="l" nucleus="false"/>
+  <map pron="m" ipa="m" nucleus="false"/>
+  <map pron="n" ipa="n" nucleus="false"/>
+  <map pron="ng" ipa="ŋ" nucleus="false"/>
+  <map pron="p" ipa="p" nucleus="false"/>
+  <map pron="r" ipa="r" nucleus="false"/>
+  <map pron="t" ipa="t" nucleus="false"/>
 </ipa_mapping>
 ```

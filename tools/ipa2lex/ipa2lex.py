@@ -21,22 +21,44 @@ import unicodedata
 from lxml import etree as ET
 
 def converter(ipa_text,phone_map,sorted_ipa):
+    original = ipa_text[:]
     pron_text = []
+    next_stress = "0"
+    num_nuclei = 0
     while len(ipa_text) > 0:
         if ipa_text[0] == " ":
+            ipa_text = ipa_text[1:]
+        elif ipa_text[0] == "ˈ":
+            next_stress = "1"
+            ipa_text = ipa_text[1:]
+        elif ipa_text[0] == "ˌ":
+            next_stress = "2"
             ipa_text = ipa_text[1:]
         else:
             match = False
             for ipa in sorted_ipa:
                 if ipa_text.startswith(ipa):
-                    pron_text.append(phone_map[ipa])
+                    pron_text.append(phone_map[ipa][0])
+                    if phone_map[ipa][1] == "true":
+                        pron_text[-1] += next_stress
+                        num_nuclei += 1
+                        next_stress = "0"
                     ipa_text = ipa_text[len(ipa):]
                     match = True
                     break
             if match == False:
                 print("WARNING: Could not match symbol",ipa_text[:1])
                 ipa_text = ipa_text[1:]
-    return ' '.join(pron_text)
+
+    output = ' '.join(pron_text)
+    if num_nuclei == 1 and "0" in output:
+        output = output.replace("0","1")
+    elif "0" in output and "1" not in output and "2" not in output:
+        output = output.replace("0","")
+        print("WARNING: polysyllabic word with no stress markers found -", \
+                original)
+
+    return output
 
 def convert_lexicon(lex_xml,phone_map,sorted_ipa):
     tree = ET.parse(lex_xml)
@@ -52,7 +74,8 @@ def import_phone_map(mapping_xml):
     root = tree.getroot()
     phone_map = {}
     for entry in root:
-        phone_map[unicodedata.normalize("NFC",entry.get("ipa"))] = entry.get("pron")
+        phone_map[unicodedata.normalize("NFC",entry.get("ipa"))] = \
+                [entry.get("pron"),entry.get("nucleus")]
     return phone_map
 
 def ipa_by_length(phone_map):
