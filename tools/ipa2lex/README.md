@@ -41,7 +41,7 @@ stress markers
 </ipa_mapping>
 ```
 
-Outputs another lexicon with the pronunciation added, as well an an attribute
+Outputs another lexicon with the pronunciation added, as well as an attribute
 noting the origin of the pronunciation.
 
 Example output:
