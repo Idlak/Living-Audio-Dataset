@@ -67,4 +67,4 @@ The lexicon is optional and will be appended to the language lexicon in the IDLA
 | ABW | Dutch (nl)   | Netherlands (nl) | Man   | 57:49 | 48\,000 |
 | RBU | English (en) | RP (rp)          | Man   | 50:50 | 48\,000 |
 | CLL | Irish (ga)   | Non-native (ie)  | Man   | 61:56 | 48\,000 |
-| ABR | Russuan (ru) | Russian (ru)     | Woman | 34:58 | 48\,000 |
+| ABR | Russian (ru) | Russian (ru)     | Woman | 34:58 | 48\,000 |
