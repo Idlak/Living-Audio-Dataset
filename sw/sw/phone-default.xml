@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='utf8'?>
+<phonesetup>
+  <phone name="a">
+    <description word_example="baba" pron_example="b_a_b_a" ipa="ɑ"/>
+  </phone>
+  <phone name="e">
+    <description word_example="ndege" pron_example="nd_e_g_e" ipa="ɛ"/>
+  </phone>
+  <phone name="i">
+    <description word_example="sisi" pron_example="s_i_s_i" ipa="i"/>
+  </phone>
+  <phone name="o">
+    <description word_example="mtoto" pron_example="m_t_o_t_o" ipa="ɔ"/>
+  </phone>
+  <phone name="u">
+    <description word_example="uhuru" pron_example="u_h_u_r_u" ipa="u"/>
+  </phone>
+  <phone name="b">
+    <description word_example="baba" pron_example="b_a_b_a" ipa="ɓ"/>
+  </phone>
+  <phone name="d">
+    <description word_example="dola" pron_example="d_o_l_a" ipa="ɗ"/>
+  </phone>
+  <phone name="dh">
+    <description word_example="dhambi" pron_example="dh_a_mb_i" ipa="ð"/>
+  </phone>
+  <phone name="j">
+    <description word_example="maji" pron_example="m_a_j_i" ipa="ʄ"/>
+  </phone>
+  <phone name="f">
+    <description word_example="fisi" pron_example="f_i_s_i" ipa="f"/>
+  </phone>
+  <phone name="g">
+    <description word_example="gani" pron_example="g_a_n_i" ipa="ɠ"/>
+  </phone>
+  <phone name="gh">
+    <description word_example="ghali" pron_example="gh_a_l_i" ipa="ɣ"/>
+  </phone>
+  <phone name="h">
+    <description word_example="uhuru" pron_example="u_h_u_r_u" ipa="h"/>
+  </phone>
+  <phone name="y">
+    <description word_example="yeye" pron_example="y_e_y_e" ipa="j"/>
+  </phone>
+  <phone name="k">
+    <description word_example="kitabu" pron_example="k_i_t_a_b_u" ipa="k"/>
+  </phone>
+  <phone name="l">
+    <description word_example="lakini" pron_example="l_a_k_i_n_i" ipa="l"/>
+  </phone>
+  <phone name="m">
+    <description word_example="damu" pron_example="d_a_m_u" ipa="m"/>
+  </phone>
+  <phone name="mm">
+    <description word_example="mtoto" pron_example="mm_t_o_t_o" ipa="m̩"/>
+  </phone>
+  <phone name="mb">
+    <description word_example="mbali" pron_example="mb_a_l_i" ipa="mɓ"/>
+  </phone>
+  <phone name="mv">
+    <description word_example="mvinyo" pron_example="mv_i_ny_o" ipa="mv"/>
+  </phone>
+  <phone name="n">
+    <description word_example="nini" pron_example="n_i_n_i" ipa="n"/>
+  </phone>
+  <phone name="nn">
+    <description word_example="nchi" pron_example="nn_ch_i" ipa="n̩"/>
+  </phone>
+  <phone name="nd">
+    <description word_example="muhindi" pron_example="m_u_h_i_nd_i" ipa="nd"/>
+  </phone>
+  <phone name="ng">
+    <description word_example="ngoma" pron_example="ng_o_m_a" ipa="nɡ"/>
+  </phone>
+  <phone name="nj">
+    <description word_example="injili" pron_example="i_nj_i_l_i" ipa="ndʒ"/>
+  </phone>
+  <phone name="nz">
+    <description word_example="kwanza" pron_example="k_w_a_nz_a" ipa="nz"/>
+  </phone>
+  <phone name="ny">
+    <description word_example="nyoka" pron_example="ny_o_k_a" ipa="ɲ"/>
+  </phone>
+  <phone name="ngg">
+    <description word_example="ng'ombe" pron_example="ngg_o_mb_e" ipa="ŋ"/>
+  </phone>
+  <phone name="p">
+    <description word_example="kikapu" pron_example="k_i_k_a_p_u" ipa="p"/>
+  </phone>
+  <phone name="r">
+    <description word_example="rafiki" pron_example="r_a_f_i_k_i" ipa="r"/>
+  </phone>
+  <phone name="s">
+    <description word_example="sisi" pron_example="s_i_s_i" ipa="s"/>
+  </phone>
+  <phone name="sh">
+    <description word_example="shamba" pron_example="sh_a_mb_a" ipa="ʃ"/>
+  </phone>
+  <phone name="t">
+    <description word_example="moto" pron_example="m_o_t_o" ipa="t"/>
+  </phone>
+  <phone name="ch">
+    <description word_example="chumba" pron_example="ch_u_mb_a" ipa="tʃ"/>
+  </phone>
+  <phone name="th">
+    <description word_example="thelathini" pron_example="th_e_l_a_th_i_n_i" ipa="θ"/>
+  </phone>
+  <phone name="v">
+    <description word_example="vitabu" pron_example="v_i_t_a_b_u" ipa="v"/>
+  </phone>
+  <phone name="w">
+    <description word_example="watu" pron_example="w_a_t_u" ipa="w"/>
+  </phone>
+  <phone name="kh">
+    <description word_example="subulkheri" pron_example="s_u_b_u_l_kh_e_r_i" ipa="x"/>
+  </phone>
+  <phone name="z">
+    <description word_example="maziwa" pron_example="m_a_z_i_w_a" ipa="z"/>
+  </phone>
+  <phone name="_">
+    <description word_example="-" pron_example="-" ipa=""/>
+  </phone>
+</phonesetup>
